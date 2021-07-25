@@ -1,24 +1,31 @@
 package br.alura.com.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.alura.com.controller.dto.TopicoDto;
-import br.alura.com.forum.modelo.Curso;
+import br.alura.com.controller.form.TopicoForm;
 import br.alura.com.forum.modelo.Topico;
+import br.alura.com.repository.CursoRepository;
 import br.alura.com.repository.TopicoRepository;
 
 @RestController // se coloca n precisa do response body ja assume por padrao
+@RequestMapping("/topicos")
 public class TopicosController {
 	
 	@Autowired // injençao dependencia
 	private TopicoRepository topicoRepository;
 	
-	@RequestMapping("/topicos") // endereço quando digita esse endereço, chama esse método
+	@Autowired // injençao dependencia
+	private CursoRepository cursoRepository;
+	
+	@GetMapping
 	public List<TopicoDto>lista(String nomeCurso) {
 		//System.out.println(nomeCurso);
 		
@@ -34,8 +41,12 @@ public class TopicosController {
 		}
 		  
 		
-		
-		
+	}
+	
+	@PostMapping
+	public void cadastrar(@RequestBody TopicoForm form) {
+	    Topico topico = form.converter(cursoRepository);
+	        topicoRepository.save(topico);
 	}
 
 }
