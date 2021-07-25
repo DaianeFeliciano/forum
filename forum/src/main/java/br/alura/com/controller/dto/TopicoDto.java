@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.alura.forum.modelo.Topico;
+import br.alura.com.forum.modelo.Topico;
 
 public class TopicoDto {
 	// atributos campos do topicos que quero devolver
