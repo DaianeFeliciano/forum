@@ -1,7 +1,13 @@
 package br.com.alura.forum.modelo;
 
-public class Usuario {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class Usuario { // IDENTITY SE FOR AUTOINCREMENT
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) // EM CIMA DO ATRIBUTO DA CHAVE PRIMARIA TEM QUE TER ESSA ANOTAÇÕES
 	private Long id;
 	private String nome;
 	private String email;
