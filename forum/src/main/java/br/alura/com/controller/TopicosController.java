@@ -21,10 +21,8 @@ public class TopicosController {
 	@RequestMapping("/topicos") // endereço quando digita esse endereço, chama esse método
 	public List<TopicoDto>lista() {
 		
-	// retornar a lista	
-		Topico topico = new Topico("Dúvida", "Duvida com Spring", new Curso("Spring", "Programação"));
-		
-		return TopicoDto.converter(Arrays.asList(topico, topico, topico));
+		List<Topico> topicos = topicoRepository.findAll();   // consulta que carrega todos os registro do bd
+		return TopicoDto.converter(topicos);
 		// criando objeto / converter de topico para topico dto
 		
 	}
