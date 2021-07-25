@@ -19,11 +19,22 @@ public class TopicosController {
 	private TopicoRepository topicoRepository;
 	
 	@RequestMapping("/topicos") // endereço quando digita esse endereço, chama esse método
-	public List<TopicoDto>lista() {
+	public List<TopicoDto>lista(String nomeCurso) {
+		//System.out.println(nomeCurso);
 		
-		List<Topico> topicos = topicoRepository.findAll();   // consulta que carrega todos os registro do bd
-		return TopicoDto.converter(topicos);
-		// criando objeto / converter de topico para topico dto
+		if(nomeCurso == null) {
+			
+			List<Topico> topicos = topicoRepository.findAll();  // consulta que carrega todos os registro do bd
+			return TopicoDto.converter(topicos);
+		} else {
+			
+			List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);  // consulta que carrega todos os registro do bd
+			return TopicoDto.converter(topicos);
+			
+		}
+		  
+		
+		
 		
 	}
 
